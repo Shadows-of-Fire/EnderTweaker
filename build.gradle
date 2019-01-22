@@ -39,13 +39,19 @@ repositories {
 	maven {
         url "https://maven2.tterrag.com/"
     }
+	maven {
+		url 'http://maven.blamejared.com'
+	}
 }
 
 dependencies {
 	deobfCompile "mezz.jei:jei_1.12.2:+"
 	deobfCompile "mcp.mobius.waila:Hwyla:1.8.+"
-	deobfCompile "com.enderio:EnderIO:1.12.2-+"
+	deobfCompile("com.enderio:EnderIO:1.12.2-+"){
+        transitive = false
+    }
 	deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
+	deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.+"
 }
 
 processResources
