@@ -33,7 +33,7 @@ public class SagMill {
 		final float[] xpa = xp;
 		if (hasErrors(output, chances, input, xpa, bonusType)) return;
 		EnderTweaker.ADDITIONS.add(() -> {
-			SagRecipe recipe = new SagRecipe(new RecipeInput(CraftTweakerMC.getIngredient(input)), energyCost, RecipeBonusType.valueOf(Strings.isNullOrEmpty(bonusType) ? "NONE" : bonusType), EnderTweaker.toEIOOutputs(output, chances, xpa));
+			SagRecipe recipe = new SagRecipe(new RecipeInput(CraftTweakerMC.getIngredient(input)), energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.valueOf(Strings.isNullOrEmpty(bonusType) ? "NONE" : bonusType), EnderTweaker.toEIOOutputs(output, chances, xpa));
 			SagMillRecipeManager.getInstance().addRecipe(recipe);
 		});
 	}

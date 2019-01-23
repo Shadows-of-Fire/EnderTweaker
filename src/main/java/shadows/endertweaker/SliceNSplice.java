@@ -24,7 +24,7 @@ public class SliceNSplice {
 		if (hasErrors(output, input)) return;
 		EnderTweaker.ADDITIONS.add(() -> {
 			RecipeOutput out = new RecipeOutput(CraftTweakerMC.getItemStack(output), 1, xp);
-			ManyToOneRecipe rec = new ManyToOneRecipe(out, energyCost, RecipeBonusType.NONE, EnderTweaker.toEIOInputs(input));
+			ManyToOneRecipe rec = new ManyToOneRecipe(out, energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.NONE, EnderTweaker.toEIOInputs(input));
 			SliceAndSpliceRecipeManager.getInstance().addRecipe(rec);
 		});
 	}
