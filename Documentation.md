@@ -15,6 +15,7 @@ Currently supported:
 
 Individual documentation for machines is as follows:
 
+---
 ### Alloy Smelter (mods.enderio.AlloySmelter)
 
 ##### Recipe Addition:
@@ -29,7 +30,7 @@ Parameters:
 `removeRecipe(IItemStack output)`
 Parameters:
  - IItemStack output - The output of the recipe to remove.
-
+---
 ### Combustion Generator (mods.enderio.CombustionGen)
 
 The combustion generator doesn't support a concept of recipes.  Instead, it uses Fuels and Coolants to determine how much FE will be generated.
@@ -54,7 +55,7 @@ Parameters:
 `removeCoolant(ILiquidStack coolant)`
 Parameters:
  - ILiquidStack coolant - The fluid coolant to remove.
-
+---
 ### Enchanter (mods.enderio.Enchanter)
 
 ##### Recipe Addition:
@@ -69,7 +70,7 @@ Parameters:
 `removeRecipe(IEnchantmentDefinition output)`
 Parameters:
  - IEnchantmentDefinition output - The enchantment output of the recipe to remove.
-
+---
 ### SAG Mill (mods.enderio.SagMill)
 
 ##### Recipe Addition:
@@ -86,7 +87,7 @@ Parameters:
 `removeRecipe(IItemStack input)`
 Parameters:
  - IItemStack input - A valid input item of the recipe to remove.
-
+---
 ### Slice'n'Splice (mods.enderio.SliceNSplice)
 
 ##### Recipe Addition:
@@ -101,7 +102,7 @@ Parameters:
 `removeRecipe(IItemStack output)`
 Parameters:
  - IItemStack output - The output of the recipe to remove.
-
+---
 ### Soul Binder (mods.enderio.SoulBinder)
 
 ##### Recipe Addition:
@@ -116,7 +117,7 @@ Parameters:
 `removeRecipe(IItemStack output)`
 Parameters:
  - IItemStack output - The output of the recipe to remove.
-
+---
 ### The Vat (mods.enderio.Vat)
 
 ##### Recipe Addition:
