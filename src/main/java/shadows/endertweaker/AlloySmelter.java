@@ -31,6 +31,10 @@ public class AlloySmelter {
 
 	@ZenMethod
 	public static void removeRecipe(IItemStack output) {
+		if (output == null) {
+			CraftTweakerAPI.logError("Cannot remove recipe for null from alloy smelter.");
+			return;
+		}
 		EnderTweaker.REMOVALS.add(() -> {
 			ItemStack stack = CraftTweakerMC.getItemStack(output);
 			IManyToOneRecipe rec = null;

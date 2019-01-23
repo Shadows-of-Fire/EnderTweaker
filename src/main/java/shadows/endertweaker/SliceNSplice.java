@@ -31,6 +31,10 @@ public class SliceNSplice {
 
 	@ZenMethod
 	public static void removeRecipe(IItemStack output) {
+		if (output == null) {
+			CraftTweakerAPI.logError("Cannot remove recipe for null from slice'n'splice.");
+			return;
+		}
 		EnderTweaker.REMOVALS.add(() -> {
 			ItemStack stack = CraftTweakerMC.getItemStack(output);
 			IManyToOneRecipe rec = null;

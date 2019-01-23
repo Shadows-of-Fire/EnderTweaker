@@ -33,6 +33,10 @@ public class Vat {
 
 	@ZenMethod
 	public static void removeRecipe(ILiquidStack output) {
+		if (output == null) {
+			CraftTweakerAPI.logError("Cannot remove recipe for null from vat.");
+			return;
+		}
 		EnderTweaker.REMOVALS.add(() -> {
 			IRecipe rec = null;
 			for (IRecipe r : VatRecipeManager.getInstance().getRecipes()) {

@@ -2,6 +2,7 @@ package shadows.endertweaker;
 
 import java.util.Map;
 
+import crafttweaker.CraftTweakerAPI;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.liquid.ILiquidStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
@@ -35,6 +36,10 @@ public class CombustionGen {
 
 	@ZenMethod
 	public static void removeFuel(ILiquidStack fuel) {
+		if (fuel == null) {
+			CraftTweakerAPI.logError("Cannot remove null fuel.");
+			return;
+		}
 		EnderTweaker.REMOVALS.add(() -> {
 			fuels.remove(fuel.getName());
 		});
@@ -42,6 +47,10 @@ public class CombustionGen {
 
 	@ZenMethod
 	public static void removeCoolant(ILiquidStack coolant) {
+		if (coolant == null) {
+			CraftTweakerAPI.logError("Cannot remove null coolant.");
+			return;
+		}
 		EnderTweaker.REMOVALS.add(() -> {
 			coolants.remove(coolant.getName());
 		});

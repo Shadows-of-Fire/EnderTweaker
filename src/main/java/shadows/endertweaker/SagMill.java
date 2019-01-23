@@ -40,6 +40,10 @@ public class SagMill {
 
 	@ZenMethod
 	public static void removeRecipe(IItemStack input) {
+		if (input == null) {
+			CraftTweakerAPI.logError("Cannot remove recipe for null from sag mill.");
+			return;
+		}
 		EnderTweaker.REMOVALS.add(() -> {
 			ItemStack stack = CraftTweakerMC.getItemStack(input);
 			IRecipe rec = SagMillRecipeManager.getInstance().getRecipeForInput(RecipeLevel.IGNORE, stack);

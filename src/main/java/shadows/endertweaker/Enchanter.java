@@ -36,6 +36,10 @@ public class Enchanter {
 
 	@ZenMethod
 	public static void removeRecipe(IEnchantmentDefinition output) {
+		if (output == null) {
+			CraftTweakerAPI.logError("Cannot remove recipe for null from enchanter.");
+			return;
+		}
 		EnderTweaker.REMOVALS.add(() -> {
 			Enchantment ench = (Enchantment) output.getInternal();
 			String id = null;
