@@ -8,16 +8,16 @@ import crafttweaker.api.minecraft.CraftTweakerMC;
 import crazypants.enderio.base.recipe.IManyToOneRecipe;
 import crazypants.enderio.base.recipe.RecipeBonusType;
 import crazypants.enderio.base.recipe.RecipeOutput;
-import crazypants.enderio.base.recipe.alloysmelter.AlloyRecipeManager;
+import crazypants.enderio.base.recipe.slicensplice.SliceAndSpliceRecipeManager;
 import net.minecraft.item.ItemStack;
 import shadows.endertweaker.recipe.ManyToOneRecipe;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenClass("mods.enderio.AlloySmelter")
+@ZenClass("mods.enderio.SliceNSplice")
 @ZenRegister
-public class AlloySmelter {
+public class SliceNSplice {
 
 	@ZenMethod
 	public static void addRecipe(IItemStack output, IIngredient[] input, @Optional int energyCost, @Optional float xp) {
@@ -25,7 +25,7 @@ public class AlloySmelter {
 		EnderTweaker.ADDITIONS.add(() -> {
 			RecipeOutput out = new RecipeOutput(CraftTweakerMC.getItemStack(output), 1, xp);
 			ManyToOneRecipe rec = new ManyToOneRecipe(out, energyCost, RecipeBonusType.NONE, EnderTweaker.toEIOInputs(input));
-			AlloyRecipeManager.getInstance().addRecipe(rec);
+			SliceAndSpliceRecipeManager.getInstance().addRecipe(rec);
 		});
 	}
 
@@ -34,25 +34,25 @@ public class AlloySmelter {
 		EnderTweaker.REMOVALS.add(() -> {
 			ItemStack stack = CraftTweakerMC.getItemStack(output);
 			IManyToOneRecipe rec = null;
-			for (IManyToOneRecipe r : AlloyRecipeManager.getInstance().getRecipes()) {
+			for (IManyToOneRecipe r : SliceAndSpliceRecipeManager.getInstance().getRecipes()) {
 				if (r.getOutput().isItemEqual(stack)) {
 					rec = r;
 					break;
 				}
 			}
 			if (rec != null) {
-				AlloyRecipeManager.getInstance().getRecipes().remove(rec);
-			} else CraftTweakerAPI.logError("No Alloy Smelter recipe found for " + output.getDisplayName());
+				SliceAndSpliceRecipeManager.getInstance().getRecipes().remove(rec);
+			} else CraftTweakerAPI.logError("No Slice'n'Splice recipe found for " + output.getDisplayName());
 		});
 	}
 
 	public static boolean hasErrors(IItemStack output, IIngredient[] input) {
 		if (output == null || output.isEmpty()) {
-			CraftTweakerAPI.logError("Invalid output (empty or null) in Alloy Smelter recipe: " + output);
+			CraftTweakerAPI.logError("Invalid output (empty or null) in Slice'n'Splice recipe: " + output);
 			return true;
 		}
-		if (input.length > 3) {
-			CraftTweakerAPI.logError("Invalid Alloy Smelter input, must be between 1 and 3 inputs.  Provided: " + EnderTweaker.getDisplayString(input));
+		if (input.length > 6) {
+			CraftTweakerAPI.logError("Invalid Slice'n'Splice input, must be between 1 and 6 inputs.  Provided: " + EnderTweaker.getDisplayString(input));
 			return true;
 		}
 		return false;

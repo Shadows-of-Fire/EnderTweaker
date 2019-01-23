@@ -8,9 +8,9 @@ import crazypants.enderio.base.recipe.Recipe;
 import crazypants.enderio.base.recipe.RecipeBonusType;
 import crazypants.enderio.base.recipe.RecipeOutput;
 
-public class AlloyRecipe extends Recipe {
+public class ManyToOneRecipe extends Recipe {
 
-	public AlloyRecipe(RecipeOutput output, int energyRequired, RecipeBonusType bonusType, IRecipeInput... input) {
+	public ManyToOneRecipe(RecipeOutput output, int energyRequired, RecipeBonusType bonusType, IRecipeInput... input) {
 		super(output, energyRequired, bonusType, input);
 	}
 
