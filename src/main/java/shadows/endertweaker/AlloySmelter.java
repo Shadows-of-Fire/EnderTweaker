@@ -5,13 +5,12 @@ import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
-import crazypants.enderio.base.recipe.BasicManyToOneRecipe;
 import crazypants.enderio.base.recipe.IManyToOneRecipe;
-import crazypants.enderio.base.recipe.Recipe;
 import crazypants.enderio.base.recipe.RecipeBonusType;
 import crazypants.enderio.base.recipe.RecipeOutput;
 import crazypants.enderio.base.recipe.alloysmelter.AlloyRecipeManager;
 import net.minecraft.item.ItemStack;
+import shadows.endertweaker.recipe.AlloyRecipe;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -24,8 +23,9 @@ public class AlloySmelter {
 	public static void addRecipe(IItemStack output, IIngredient[] input, @Optional int energyCost, @Optional float xp) {
 		if (hasErrors(output, input)) return;
 		EnderTweaker.ADDITIONS.add(() -> {
-			Recipe r = new Recipe(new RecipeOutput(CraftTweakerMC.getItemStack(output)), energyCost, RecipeBonusType.NONE, EnderTweaker.toEIOInputs(input));
-			AlloyRecipeManager.getInstance().addRecipe(new BasicManyToOneRecipe(r));
+			RecipeOutput out = new RecipeOutput(CraftTweakerMC.getItemStack(output), 1, xp);
+			AlloyRecipe rec = new AlloyRecipe(out, energyCost, RecipeBonusType.NONE, EnderTweaker.toEIOInputs(input));
+			AlloyRecipeManager.getInstance().addRecipe(rec);
 		});
 	}
 
@@ -51,19 +51,11 @@ public class AlloySmelter {
 			CraftTweakerAPI.logError("Invalid output (empty or null) in Alloy Smelter recipe: " + output);
 			return true;
 		}
-		if (input.length > 3 || input.length < 2) {
-			CraftTweakerAPI.logError("Invalid Alloy Smelter input, must be between 2-3 inputs.  Provided: " + getDisplayString(input));
+		if (input.length > 3) {
+			CraftTweakerAPI.logError("Invalid Alloy Smelter input, must be between 1 and 3 inputs.  Provided: " + EnderTweaker.getDisplayString(input));
 			return true;
 		}
 		return false;
-	}
-
-	public static String getDisplayString(IIngredient[] ings) {
-		StringBuilder sb = new StringBuilder("[");
-		for (IIngredient i : ings)
-			sb.append(i.toCommandString() + ",");
-		sb.replace(sb.length() - 1, sb.length(), "");
-		return sb.append("]").toString();
 	}
 
 }

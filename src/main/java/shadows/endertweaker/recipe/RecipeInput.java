@@ -25,7 +25,7 @@ public class RecipeInput implements IRecipeInput {
 
 	@Override
 	public ItemStack getInput() {
-		return ing.getMatchingStacks()[0];
+		return ing.getMatchingStacks()[0].copy();
 	}
 
 	@Override
@@ -55,7 +55,11 @@ public class RecipeInput implements IRecipeInput {
 
 	@Override
 	public ItemStack[] getEquivelentInputs() {
-		return ing.getMatchingStacks();
+		ItemStack[] org = ing.getMatchingStacks();
+		ItemStack[] copy = new ItemStack[org.length];
+		for (int i = 0; i < copy.length; i++)
+			copy[i] = org[i].copy();
+		return copy;
 	}
 
 	@Override
