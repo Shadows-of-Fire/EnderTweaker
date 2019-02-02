@@ -69,6 +69,14 @@ Parameters:
  - String bonusType - This impacts how Grinding Balls work.  May be `NONE` (no bonus), `MULTIPLY_OUTPUT` (can increase chance > 1.0), and `CHANCE_ONLY` (caps chance at 1.0).
  - int energyCost - How much FE the recipe uses.  Defaults to 5000.
  - float xp - The xp is granted from this recipe.  May not be negative.
+
+`addRecipe(WeightedItemStack[] output, IIngredient input, @Optional String bonusType, @Optional int energyCost, @Optional float[] xp)`
+Parameters:
+ - WeightedItemStack[] output - The results of the recipe.
+ - IIngredient input - The input.
+ - String bonusType - This impacts how Grinding Balls work.  May be `NONE` (no bonus), `MULTIPLY_OUTPUT` (can increase chance > 1.0), and `CHANCE_ONLY` (caps chance at 1.0).
+ - int energyCost - How much FE the recipe uses.  Defaults to 5000.
+ - float xp - The xp is granted from this recipe.  May not be negative.
  
 ##### Recipe Removal:
 `removeRecipe(IItemStack input)`
@@ -98,6 +106,7 @@ Parameters:
  - IItemStack output - The result of the recipe.
  - IIngredient input - The main (non-soul vial) ingredient.
  - String[] entities - Allowed entities that must be present in a soul vial for this recipe to work.
+ - int xp - The XP cost of this recipe, in levels.
  - int energyCost - How much FE the recipe uses.  Defaults to 5000.
  
 ##### Recipe Removal:
@@ -122,3 +131,20 @@ Parameters:
 `removeRecipe(ILiquidStack output)`
 Parameters:
  - ILiquidStack output - The output of the recipe to remove.
+
+### Tank (mods.enderio.Tank)
+
+##### Recipe Addition:
+`addRecipe(boolean fill, IIngredient input, ILiquidStack fluid, IItemStack output)`
+Parameters:
+ - boolean fill - If true, the fluid passed will be consumed when the recipe is processed.  If false, the fluid will be added to the tank.
+ - IIngredient input - The input item.
+ - ILiquidStack fluid - The relevant fluid.  Operation is determined by fill.
+ - IItemStack output - The output of the recipe.
+
+##### Recipe Removal:
+`removeRecipe(boolean fill, ILiquidStack fluid, IItemStack output)`
+Parameters:
+ - boolean fill - If this recipe is a filling recipe.
+ - ILiquidStack fluid - The fluid involved in this recipe.
+ - IItemStack output - The output of the recipe to remove.
