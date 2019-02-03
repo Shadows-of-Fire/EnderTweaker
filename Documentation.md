@@ -116,17 +116,23 @@ Parameters:
 ---
 ### The Vat (mods.enderio.Vat)
 
+The Vat uses a system of multipliers to calculate output.  This means each pair of inputs will use a different amount of input.  The ratio of input -> output fluid is constant.
+The multipliers on the inputs determine how much input fluid is used.  `slot1Mult * slot2Mult * 1000mB` of input is used per craft.
+The final output amount is calculated from `inMult * slot1Mult * slot2Mult * 1000mB`.
+The ratio of input to output fluid is equal to `inMult`.
+
 ##### Recipe Addition:
-`addRecipe(ILiquidStack output, ILiquidStack input, IIngredient[] slot1Solids, float[] slot1Mults, IIngredient[] slot2Solids, float[] slot2Mults, @Optional int energyCost)`
+`addRecipe(ILiquidStack output, float inMult, ILiquidStack input, IIngredient[] slot1Solids, float[] slot1Mults, IIngredient[] slot2Solids, float[] slot2Mults, @Optional int energyCost)`
 Parameters:
- - ILiquidStack output - The output fluid (right tank).
- - ILiquidStack input - The input fluid (left tank).
+ - ILiquidStack output - The output fluid (right tank).  Amount is ignored.
+ - float inMult - The multiplier of the input fluid.  Changes how much output is created.
+ - ILiquidStack input - The input fluid (left tank).  Amount is ignored.
  - IIngredient[] slot1Solids - Items that can go in slot 1.
- - float[] slot1Mults - The multipliers for the items in slot 1.  Must be the same length as slot1Solids.
+ - float[] slot1Mults - The multipliers for the items in slot 1.  Must be the same length as slot1Solids.  Changes how much output is created and how much input is used.
  - IIngredient[] slot2Solids - Items that can go in slot 2.
- - float[] slot2Mults - The multipliers for the items in slot 2.  Must be the same length as slot2Solids.
+ - float[] slot2Mults - The multipliers for the items in slot 2.  Must be the same length as slot2Solids.  Changes how much output is created and how much input is used.
  - int energyCost - How much FE the recipe uses.  Defaults to 5000.
- 
+
 ##### Recipe Removal:
 `removeRecipe(ILiquidStack output)`
 Parameters:

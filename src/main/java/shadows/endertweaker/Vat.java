@@ -22,13 +22,20 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class Vat {
 
 	@ZenMethod
-	public static void addRecipe(ILiquidStack output, ILiquidStack input, IIngredient[] slot1Solids, float[] slot1Mults, IIngredient[] slot2Solids, float[] slot2Mults, @Optional int energyCost) {
+	public static void addRecipe(ILiquidStack output, float inMult, ILiquidStack input, IIngredient[] slot1Solids, float[] slot1Mults, IIngredient[] slot2Solids, float[] slot2Mults, @Optional int energyCost) {
 		if (hasErrors(output, input, slot1Solids, slot1Mults, slot2Solids, slot2Mults)) return;
 		EnderTweaker.ADDITIONS.add(() -> {
 			RecipeOutput out = new RecipeOutput(CraftTweakerMC.getLiquidStack(output));
-			Recipe rec = new Recipe(out, energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.NONE, getVatInputs(input, slot1Solids, slot1Mults, slot2Solids, slot2Mults));
+			Recipe rec = new Recipe(out, energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.NONE, getVatInputs(input, inMult <= 0 ? 1 : inMult, slot1Solids, slot1Mults, slot2Solids, slot2Mults));
 			VatRecipeManager.getInstance().addRecipe(rec);
 		});
+	}
+	
+	@ZenMethod
+	@Deprecated
+	public static void addRecipe(ILiquidStack output, ILiquidStack input, IIngredient[] slot1Solids, float[] slot1Mults, IIngredient[] slot2Solids, float[] slot2Mults, @Optional int energyCost) {
+		CraftTweakerAPI.logError("Using Vat#addRecipe(ILiquidStack output, ILiquidStack input, IIngredient[] slot1Solids, float[] slot1Mults, IIngredient[] slot2Solids, float[] slot2Mults, @Optional int energyCost) is deprecated and will be removed in a future release.");
+		addRecipe(output, 1, input, slot1Solids, slot1Mults, slot2Solids, slot2Mults, energyCost);
 	}
 
 	@ZenMethod
@@ -71,10 +78,10 @@ public class Vat {
 		return false;
 	}
 
-	public static IRecipeInput[] getVatInputs(ILiquidStack input, IIngredient[] slot1, float[] slot1Mult, IIngredient[] slot2, float[] slot2Mult) {
+	public static IRecipeInput[] getVatInputs(ILiquidStack input, float inMult, IIngredient[] slot1, float[] slot1Mult, IIngredient[] slot2, float[] slot2Mult) {
 		IRecipeInput[] ret = new IRecipeInput[1 + slot1.length + slot2.length];
 		int x = 0;
-		ret[x++] = new RecipeInput(CraftTweakerMC.getLiquidStack(input));
+		ret[ret.length - 1] = new RecipeInput(CraftTweakerMC.getLiquidStack(input), inMult);
 		for (int i = 0; i < slot1.length; i++) {
 			ret[x++] = new VatRecipeInput(CraftTweakerMC.getIngredient(slot1[i]), 0, slot1Mult[i]);
 		}
