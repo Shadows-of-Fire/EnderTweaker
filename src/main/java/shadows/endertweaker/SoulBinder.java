@@ -31,7 +31,7 @@ public class SoulBinder {
 	@ZenMethod
 	public static void removeRecipe(IItemStack output) {
 		if (output == null) {
-			CraftTweakerAPI.logError("Cannot remove reciep for null from soul binder.");
+			CraftTweakerAPI.logError("Cannot remove recipe for null from soul binder.");
 			return;
 		}
 		EnderTweaker.REMOVALS.add(() -> {
