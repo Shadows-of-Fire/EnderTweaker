@@ -34,7 +34,7 @@ public class SagMill {
 		final float[] xpa = xp;
 		if (hasErrors(output, chances, input, xpa, bonusType)) return;
 		EnderTweaker.ADDITIONS.add(() -> {
-			SagRecipe recipe = new SagRecipe(new RecipeInput(CraftTweakerMC.getIngredient(input)), energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.valueOf(Strings.isNullOrEmpty(bonusType) ? "NONE" : bonusType), EnderTweaker.toEIOOutputs(output, chances, xpa));
+			SagRecipe recipe = new SagRecipe(new RecipeInput(CraftTweakerMC.getIngredient(input)), energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.valueOf(Strings.isNullOrEmpty(bonusType) ? "NONE" : bonusType), RecipeUtils.toEIOOutputs(output, chances, xpa));
 			SagMillRecipeManager.getInstance().addRecipe(recipe);
 		});
 	}
@@ -48,7 +48,7 @@ public class SagMill {
 		final float[] xpa = xp;
 		if (hasErrors(output, input, xpa, bonusType)) return;
 		EnderTweaker.ADDITIONS.add(() -> {
-			SagRecipe recipe = new SagRecipe(new RecipeInput(CraftTweakerMC.getIngredient(input)), energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.valueOf(Strings.isNullOrEmpty(bonusType) ? "NONE" : bonusType), EnderTweaker.toEIOOutputs(output, xpa));
+			SagRecipe recipe = new SagRecipe(new RecipeInput(CraftTweakerMC.getIngredient(input)), energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.valueOf(Strings.isNullOrEmpty(bonusType) ? "NONE" : bonusType), RecipeUtils.toEIOOutputs(output, xpa));
 			SagMillRecipeManager.getInstance().addRecipe(recipe);
 		});
 	}
@@ -74,15 +74,15 @@ public class SagMill {
 			return true;
 		}
 		if (output.length > 4) {
-			CraftTweakerAPI.logError("Invalid output (more than four entries) in Sag Mill recipe: " + EnderTweaker.getDisplayString(output));
+			CraftTweakerAPI.logError("Invalid output (more than four entries) in Sag Mill recipe: " + RecipeUtils.getDisplayString(output));
 			return true;
 		}
 		if (output.length != chances.length) {
-			CraftTweakerAPI.logError("Invalid output chances (chances do not match outputs) in Sag Mill recipe: " + EnderTweaker.getDisplayString(output) + " | " + chances);
+			CraftTweakerAPI.logError("Invalid output chances (chances do not match outputs) in Sag Mill recipe: " + RecipeUtils.getDisplayString(output) + " | " + chances);
 			return true;
 		}
 		if (output.length != xp.length) {
-			CraftTweakerAPI.logError("Invalid output xp (xp does not match outputs) in Sag Mill recipe: " + EnderTweaker.getDisplayString(output) + " | " + xp);
+			CraftTweakerAPI.logError("Invalid output xp (xp does not match outputs) in Sag Mill recipe: " + RecipeUtils.getDisplayString(output) + " | " + xp);
 			return true;
 		}
 		if (input == null) {
@@ -102,11 +102,11 @@ public class SagMill {
 			return true;
 		}
 		if (output.length > 4) {
-			CraftTweakerAPI.logError("Invalid output (more than four entries) in Sag Mill recipe: " + EnderTweaker.getDisplayString(output));
+			CraftTweakerAPI.logError("Invalid output (more than four entries) in Sag Mill recipe: " + RecipeUtils.getDisplayString(output));
 			return true;
 		}
 		if (output.length != xp.length) {
-			CraftTweakerAPI.logError("Invalid output xp (xp does not match outputs) in Sag Mill recipe: " + EnderTweaker.getDisplayString(output) + " | " + xp);
+			CraftTweakerAPI.logError("Invalid output xp (xp does not match outputs) in Sag Mill recipe: " + RecipeUtils.getDisplayString(output) + " | " + xp);
 			return true;
 		}
 		if (input == null) {
