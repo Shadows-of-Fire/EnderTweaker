@@ -11,10 +11,11 @@ import crazypants.enderio.base.recipe.IRecipeInput;
 import crazypants.enderio.base.recipe.RecipeOutput;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import shadows.endertweaker.recipe.RecipeInput;
 
-@Mod(modid = EnderTweaker.MODID, name = EnderTweaker.MODNAME, version = EnderTweaker.VERSION, dependencies = "required-after:enderio;required-after:crafttweaker")
+@Mod(modid = EnderTweaker.MODID, name = EnderTweaker.MODNAME, version = EnderTweaker.VERSION, dependencies = "required:enderio;required-after:crafttweaker;before:jei")
 public class EnderTweaker {
 
 	public static final String MODID = "endertweaker";
@@ -27,10 +28,14 @@ public class EnderTweaker {
 	public void postInit(FMLPostInitializationEvent e) {
 		for (Runnable r : REMOVALS)
 			r.run();
+		REMOVALS.clear();
+	}
+
+	@EventHandler
+	public void loadComplete(FMLLoadCompleteEvent e) {
 		for (Runnable r : ADDITIONS)
 			r.run();
 		ADDITIONS.clear();
-		REMOVALS.clear();
 	}
 
 	public static IRecipeInput[] toEIOInputs(IIngredient[] inputs) {
