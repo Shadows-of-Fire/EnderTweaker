@@ -24,7 +24,7 @@ public class AlloySmelter {
 		if (hasErrors(output, input)) return;
 		EnderTweaker.ADDITIONS.add(() -> {
 			RecipeOutput out = new RecipeOutput(CraftTweakerMC.getItemStack(output), 1, xp);
-			ManyToOneRecipe rec = new ManyToOneRecipe(out, energyCost, RecipeBonusType.NONE, EnderTweaker.toEIOInputs(input));
+			ManyToOneRecipe rec = new ManyToOneRecipe(out, energyCost, RecipeBonusType.NONE, RecipeUtils.toEIOInputs(input));
 			AlloyRecipeManager.getInstance().addRecipe(rec);
 		});
 	}
@@ -56,7 +56,7 @@ public class AlloySmelter {
 			return true;
 		}
 		if (input.length > 3) {
-			CraftTweakerAPI.logError("Invalid Alloy Smelter input, must be between 1 and 3 inputs.  Provided: " + EnderTweaker.getDisplayString(input));
+			CraftTweakerAPI.logError("Invalid Alloy Smelter input, must be between 1 and 3 inputs.  Provided: " + RecipeUtils.getDisplayString(input));
 			return true;
 		}
 		return false;

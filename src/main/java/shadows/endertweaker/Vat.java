@@ -68,11 +68,11 @@ public class Vat {
 			return true;
 		}
 		if (slot1Solids.length != slot1Mults.length) {
-			CraftTweakerAPI.logError("Invalid slot 1 configuration in vat recipe; slot1Solids must have equal length of slot1Mults! Provided: " + EnderTweaker.getDisplayString(slot1Solids) + " | " + slot1Mults);
+			CraftTweakerAPI.logError("Invalid slot 1 configuration in vat recipe; slot1Solids must have equal length of slot1Mults! Provided: " + RecipeUtils.getDisplayString(slot1Solids) + " | " + slot1Mults);
 			return true;
 		}
 		if (slot2Solids.length != slot2Mults.length) {
-			CraftTweakerAPI.logError("Invalid slot 2 configuration in vat recipe; slot1Solids must have equal length of slot2Mults! Provided: " + EnderTweaker.getDisplayString(slot2Solids) + " | " + slot2Mults);
+			CraftTweakerAPI.logError("Invalid slot 2 configuration in vat recipe; slot1Solids must have equal length of slot2Mults! Provided: " + RecipeUtils.getDisplayString(slot2Solids) + " | " + slot2Mults);
 			return true;
 		}
 		return false;

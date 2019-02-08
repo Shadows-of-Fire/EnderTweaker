@@ -24,7 +24,7 @@ public class SliceNSplice {
 		if (hasErrors(output, input)) return;
 		EnderTweaker.ADDITIONS.add(() -> {
 			RecipeOutput out = new RecipeOutput(CraftTweakerMC.getItemStack(output), 1, xp);
-			ManyToOneRecipe rec = new ManyToOneRecipe(out, energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.NONE, EnderTweaker.toEIOInputs(input));
+			ManyToOneRecipe rec = new ManyToOneRecipe(out, energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.NONE, RecipeUtils.toEIOInputs(input));
 			SliceAndSpliceRecipeManager.getInstance().addRecipe(rec);
 		});
 	}
@@ -56,7 +56,7 @@ public class SliceNSplice {
 			return true;
 		}
 		if (input.length > 6) {
-			CraftTweakerAPI.logError("Invalid Slice'n'Splice input, must be between 1 and 6 inputs.  Provided: " + EnderTweaker.getDisplayString(input));
+			CraftTweakerAPI.logError("Invalid Slice'n'Splice input, must be between 1 and 6 inputs.  Provided: " + RecipeUtils.getDisplayString(input));
 			return true;
 		}
 		return false;
