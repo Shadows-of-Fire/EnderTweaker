@@ -10,6 +10,7 @@ import crazypants.enderio.base.recipe.RecipeBonusType;
 import crazypants.enderio.base.recipe.RecipeOutput;
 import crazypants.enderio.base.recipe.slicensplice.SliceAndSpliceRecipeManager;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import shadows.endertweaker.recipe.ManyToOneRecipe;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -39,7 +40,7 @@ public class SliceNSplice {
 			ItemStack stack = CraftTweakerMC.getItemStack(output);
 			IManyToOneRecipe rec = null;
 			for (IManyToOneRecipe r : SliceAndSpliceRecipeManager.getInstance().getRecipes()) {
-				if (r.getOutput().isItemEqual(stack)) {
+				if (OreDictionary.itemMatches(stack, r.getOutput(), false)) {
 					rec = r;
 					break;
 				}

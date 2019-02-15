@@ -12,6 +12,7 @@ import crazypants.enderio.base.recipe.MachineRecipeRegistry;
 import crazypants.enderio.base.recipe.soul.ISoulBinderRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.oredict.OreDictionary;
 import shadows.endertweaker.recipe.SoulBinderRecipe;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -38,7 +39,7 @@ public class SoulBinder {
 			ItemStack stack = CraftTweakerMC.getItemStack(output);
 			String id = null;
 			for (Map.Entry<String, IMachineRecipe> ent : MachineRecipeRegistry.instance.getRecipesForMachine(MachineRecipeRegistry.SOULBINDER).entrySet()) {
-				if (((ISoulBinderRecipe) ent.getValue()).getOutputStack().isItemEqual(stack)) {
+				if (OreDictionary.itemMatches(stack, ((ISoulBinderRecipe) ent.getValue()).getOutputStack(), false)) {
 					id = ent.getKey();
 					break;
 				}

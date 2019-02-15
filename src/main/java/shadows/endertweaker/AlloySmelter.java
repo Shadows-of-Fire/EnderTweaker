@@ -1,5 +1,8 @@
 package shadows.endertweaker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
@@ -10,6 +13,7 @@ import crazypants.enderio.base.recipe.RecipeBonusType;
 import crazypants.enderio.base.recipe.RecipeOutput;
 import crazypants.enderio.base.recipe.alloysmelter.AlloyRecipeManager;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import shadows.endertweaker.recipe.ManyToOneRecipe;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -37,15 +41,14 @@ public class AlloySmelter {
 		}
 		EnderTweaker.REMOVALS.add(() -> {
 			ItemStack stack = CraftTweakerMC.getItemStack(output);
-			IManyToOneRecipe rec = null;
+			List<IManyToOneRecipe> removals = new ArrayList<>();
 			for (IManyToOneRecipe r : AlloyRecipeManager.getInstance().getRecipes()) {
-				if (r.getOutput().isItemEqual(stack)) {
-					rec = r;
-					break;
+				if (OreDictionary.itemMatches(stack, r.getOutput(), false)) {
+					removals.add(r);
 				}
 			}
-			if (rec != null) {
-				AlloyRecipeManager.getInstance().getRecipes().remove(rec);
+			if (!removals.isEmpty()) {
+				removals.forEach(AlloyRecipeManager.getInstance().getRecipes()::remove);
 			} else CraftTweakerAPI.logError("No Alloy Smelter recipe found for " + output.getDisplayName());
 		});
 	}

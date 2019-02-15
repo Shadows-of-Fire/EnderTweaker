@@ -16,6 +16,7 @@ import crazypants.enderio.base.recipe.MachineRecipeRegistry;
 import crazypants.enderio.base.recipe.RecipeLevel;
 import crazypants.enderio.base.recipe.tank.TankMachineRecipe;
 import crazypants.enderio.base.recipe.tank.TankMachineRecipe.Logic;
+import net.minecraftforge.oredict.OreDictionary;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -46,7 +47,7 @@ public class Tank {
 			String id = fill ? MachineRecipeRegistry.TANK_FILLING : MachineRecipeRegistry.TANK_EMPTYING;
 			for (Map.Entry<String, IMachineRecipe> ent : MachineRecipeRegistry.instance.getRecipesForMachine(id).entrySet()) {
 				TankMachineRecipe r = (TankMachineRecipe) ent.getValue();
-				if (r.getFluid().getFluid().getName().equals(fluid.getName()) && r.getOutput().getMatchingStacks()[0].isItemEqual(CraftTweakerMC.getItemStack(output))) {
+				if (r.getFluid().getFluid().getName().equals(fluid.getName()) && OreDictionary.itemMatches(CraftTweakerMC.getItemStack(output), r.getOutput().getMatchingStacks()[0], false)) {
 					rec = ent.getKey();
 					break;
 				}
