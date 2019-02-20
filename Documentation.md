@@ -6,7 +6,7 @@ Individual documentation for machines is as follows:
 ### Alloy Smelter (mods.enderio.AlloySmelter)
 
 ##### Recipe Addition:
-`addRecipe(IItemStack output, IIngredient[] input, @Optional int energyCost, @Optional float xp)`
+`addRecipe(IItemStack output, IIngredient[] input, @Optional int energyCost, @Optional float xp)`  
 Parameters:
  - IItemStack output - The result of the recipe.
  - IIngredient[] input - The ingredients.  Must be between 1 and 3 ingredients.
@@ -14,7 +14,7 @@ Parameters:
  - float xp - The xp is granted from this recipe.  May not be negative.
  
 ##### Recipe Removal:
-`removeRecipe(IItemStack output)`
+`removeRecipe(IItemStack output)`  
 Parameters:
  - IItemStack output - The output of the recipe to remove.
 ---
@@ -23,30 +23,30 @@ Parameters:
 The combustion generator doesn't support a concept of recipes.  Instead, it uses Fuels and Coolants to determine how much FE will be generated.
 
 ##### Addition: 
-`addFuel(ILiquidStack fuel, int powerPerCycleRF, int totalBurnTime)`
+`addFuel(ILiquidStack fuel, int powerPerCycleRF, int totalBurnTime)`  
 Parameters:
  - ILiquidStack fuel - The fluid fuel to add.
  - int powerPerCycleRF - Amount of energy created per tick in a base-line machine.
  - int totalBurnTime - Total burn time of one bucket of fuel.
 
- `addCoolant(ILiquidStack coolant, float degreesCoolingPerMB)`
+ `addCoolant(ILiquidStack coolant, float degreesCoolingPerMB)`  
  Parameters:
  - ILiquidStack coolant - The fluid coolant to add.
  - float degreesCoolingPerMB - How much heat can one mB of the coolant absorb until it heats up by 1 K?
 
 ##### Removal: 
-`removeFuel(ILiquidStack fuel)`
+`removeFuel(ILiquidStack fuel)`  
 Parameters:
  - ILiquidStack fuel - The fluid fuel to remove.
 
-`removeCoolant(ILiquidStack coolant)`
+`removeCoolant(ILiquidStack coolant)`  
 Parameters:
  - ILiquidStack coolant - The fluid coolant to remove.
 ---
 ### Enchanter (mods.enderio.Enchanter)
 
 ##### Recipe Addition:
-`addRecipe(IEnchantmentDefinition output, IIngredient input, int amountPerLevel, double costMultiplier)`
+`addRecipe(IEnchantmentDefinition output, IIngredient input, int amountPerLevel, double costMultiplier)`  
 Parameters:
  - IEnchantmentDefinition output - The output enchantment.
  - IIngredient input - The item that it used to make this enchantment.
@@ -54,14 +54,14 @@ Parameters:
  - double costMultiplier - Used to modify how expensive the recipe is.
 
 ##### Recipe Removal:
-`removeRecipe(IEnchantmentDefinition output)`
+`removeRecipe(IEnchantmentDefinition output)`  
 Parameters:
  - IEnchantmentDefinition output - The enchantment output of the recipe to remove.
 ---
 ### SAG Mill (mods.enderio.SagMill)
 
 ##### Recipe Addition:
-`addRecipe(IItemStack[] output, float[] chances, IIngredient input, @Optional String bonusType, @Optional int energyCost, @Optional float[] xp)`
+`addRecipe(IItemStack[] output, float[] chances, IIngredient input, @Optional String bonusType, @Optional int energyCost, @Optional float[] xp)`  
 Parameters:
  - IItemStack[] output - The results of the recipe.
  - float[] chances - The chance that this item appears.  Must have the same length as output.
@@ -70,7 +70,7 @@ Parameters:
  - int energyCost - How much FE the recipe uses.  Defaults to 5000.
  - float xp - The xp is granted from this recipe.  May not be negative.
 
-`addRecipe(WeightedItemStack[] output, IIngredient input, @Optional String bonusType, @Optional int energyCost, @Optional float[] xp)`
+`addRecipe(WeightedItemStack[] output, IIngredient input, @Optional String bonusType, @Optional int energyCost, @Optional float[] xp)`  
 Parameters:
  - WeightedItemStack[] output - The results of the recipe.
  - IIngredient input - The input.
@@ -79,14 +79,14 @@ Parameters:
  - float xp - The xp is granted from this recipe.  May not be negative.
  
 ##### Recipe Removal:
-`removeRecipe(IItemStack input)`
+`removeRecipe(IItemStack input)`  
 Parameters:
  - IItemStack input - A valid input item of the recipe to remove.
 ---
 ### Slice'n'Splice (mods.enderio.SliceNSplice)
 
 ##### Recipe Addition:
-`addRecipe(IItemStack output, IIngredient[] input, @Optional int energyCost, @Optional float xp)`
+`addRecipe(IItemStack output, IIngredient[] input, @Optional int energyCost, @Optional float xp)`  
 Parameters:
  - IItemStack output - The result of the recipe.
  - IIngredient[] input - The ingredients.  Must be between 1 and 6 ingredients.
@@ -94,14 +94,14 @@ Parameters:
  - float xp - The xp is granted from this recipe.  May not be negative.
  
 ##### Recipe Removal:
-`removeRecipe(IItemStack output)`
+`removeRecipe(IItemStack output)`  
 Parameters:
  - IItemStack output - The output of the recipe to remove.
 ---
 ### Soul Binder (mods.enderio.SoulBinder)
 
 ##### Recipe Addition:
-`addRecipe(IItemStack output, IIngredient input, String[] entities, int xp, @Optional int energyCost)`
+`addRecipe(IItemStack output, IIngredient input, String[] entities, int xp, @Optional int energyCost)`  
 Parameters:
  - IItemStack output - The result of the recipe.
  - IIngredient input - The main (non-soul vial) ingredient.
@@ -110,7 +110,7 @@ Parameters:
  - int energyCost - How much FE the recipe uses.  Defaults to 5000.
  
 ##### Recipe Removal:
-`removeRecipe(IItemStack output)`
+`removeRecipe(IItemStack output)`  
 Parameters:
  - IItemStack output - The output of the recipe to remove.
 ---
@@ -122,7 +122,7 @@ The final output amount is calculated from `inMult * slot1Mult * slot2Mult * 100
 The ratio of input to output fluid is equal to `inMult`.
 
 ##### Recipe Addition:
-`addRecipe(ILiquidStack output, float inMult, ILiquidStack input, IIngredient[] slot1Solids, float[] slot1Mults, IIngredient[] slot2Solids, float[] slot2Mults, @Optional int energyCost)`
+`addRecipe(ILiquidStack output, float inMult, ILiquidStack input, IIngredient[] slot1Solids, float[] slot1Mults, IIngredient[] slot2Solids, float[] slot2Mults, @Optional int energyCost)`  
 Parameters:
  - ILiquidStack output - The output fluid (right tank).  Amount is ignored.
  - float inMult - The multiplier of the input fluid.  Changes how much output is created.
@@ -134,14 +134,14 @@ Parameters:
  - int energyCost - How much FE the recipe uses.  Defaults to 5000.
 
 ##### Recipe Removal:
-`removeRecipe(ILiquidStack output)`
+`removeRecipe(ILiquidStack output)`  
 Parameters:
  - ILiquidStack output - The output of the recipe to remove.
 
 ### Tank (mods.enderio.Tank)
 
 ##### Recipe Addition:
-`addRecipe(boolean fill, IIngredient input, ILiquidStack fluid, IItemStack output)`
+`addRecipe(boolean fill, IIngredient input, ILiquidStack fluid, IItemStack output)`  
 Parameters:
  - boolean fill - If true, the fluid passed will be consumed when the recipe is processed.  If false, the fluid will be added to the tank.
  - IIngredient input - The input item.
@@ -149,7 +149,7 @@ Parameters:
  - IItemStack output - The output of the recipe.
 
 ##### Recipe Removal:
-`removeRecipe(boolean fill, ILiquidStack fluid, IItemStack output)`
+`removeRecipe(boolean fill, ILiquidStack fluid, IItemStack output)`  
 Parameters:
  - boolean fill - If this recipe is a filling recipe.
  - ILiquidStack fluid - The fluid involved in this recipe.
