@@ -30,7 +30,7 @@ public class Vat {
 			VatRecipeManager.getInstance().addRecipe(rec);
 		});
 	}
-	
+
 	@ZenMethod
 	@Deprecated
 	public static void addRecipe(ILiquidStack output, ILiquidStack input, IIngredient[] slot1Solids, float[] slot1Mults, IIngredient[] slot2Solids, float[] slot2Mults, @Optional int energyCost) {

@@ -38,7 +38,7 @@ public class SagMill {
 			SagMillRecipeManager.getInstance().addRecipe(recipe);
 		});
 	}
-	
+
 	@ZenMethod
 	public static void addRecipe(WeightedItemStack[] output, IIngredient input, @Optional String bonusType, @Optional int energyCost, @Optional float[] xp) {
 		if (xp == null) {
@@ -95,7 +95,7 @@ public class SagMill {
 		}
 		return false;
 	}
-	
+
 	public static boolean hasErrors(WeightedItemStack[] output, IIngredient input, float[] xp, String type) {
 		if (output == null || output.length == 0) {
 			CraftTweakerAPI.logError("Invalid output (empty or null) in Sag Mill recipe: " + output);
