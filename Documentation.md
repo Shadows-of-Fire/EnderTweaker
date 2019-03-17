@@ -17,6 +17,10 @@ Parameters:
 `removeRecipe(IItemStack output)`  
 Parameters:
  - IItemStack output - The output of the recipe to remove.
+
+`removeByInputs(IItemStack... input)`  
+Parameters:
+ - IItemStack... input - The input of the recipe to remove.
 ---
 ### Combustion Generator (mods.enderio.CombustionGen)
 

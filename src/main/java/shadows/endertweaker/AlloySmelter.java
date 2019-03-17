@@ -3,13 +3,18 @@ package shadows.endertweaker;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.enderio.core.common.util.NNList;
+
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crazypants.enderio.base.recipe.IManyToOneRecipe;
+import crazypants.enderio.base.recipe.IRecipe;
+import crazypants.enderio.base.recipe.MachineRecipeInput;
 import crazypants.enderio.base.recipe.RecipeBonusType;
+import crazypants.enderio.base.recipe.RecipeLevel;
 import crazypants.enderio.base.recipe.RecipeOutput;
 import crazypants.enderio.base.recipe.alloysmelter.AlloyRecipeManager;
 import net.minecraft.item.ItemStack;
@@ -50,6 +55,25 @@ public class AlloySmelter {
 			if (!removals.isEmpty()) {
 				removals.forEach(AlloyRecipeManager.getInstance().getRecipes()::remove);
 			} else CraftTweakerAPI.logError("No Alloy Smelter recipe found for " + output.getDisplayName());
+		});
+	}
+
+	@ZenMethod
+	public static void removeByInputs(IItemStack... input) {
+		if (input == null || input.length > 3) {
+			CraftTweakerAPI.logError("Cannot remove recipe for null from alloy smelter.");
+			return;
+		}
+		EnderTweaker.REMOVALS.add(() -> {
+			NNList<MachineRecipeInput> inputs = new NNList<>();
+			for (int i = 0; i < input.length; i++) {
+				inputs.add(new MachineRecipeInput(i, CraftTweakerMC.getItemStack(input[i])));
+			}
+			IRecipe r = AlloyRecipeManager.getInstance().getRecipeForInputs(RecipeLevel.IGNORE, inputs);
+
+			if (r != null) {
+				AlloyRecipeManager.getInstance().getRecipes().remove(r);
+			} else CraftTweakerAPI.logError("No Alloy Smelter recipe found for " + RecipeUtils.getDisplayString(input));
 		});
 	}
 
