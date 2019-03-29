@@ -23,6 +23,14 @@ public class Enchanter {
 
 	@ZenMethod
 	public static void addRecipe(IEnchantmentDefinition output, IIngredient input, int amountPerLevel, double costMultiplier) {
+		if (output == null) {
+			CraftTweakerAPI.logError("Cannot add recipe for null to enchanter.");
+			return;
+		}
+		if (input == null) {
+			CraftTweakerAPI.logError("Cannot add recipe for " + output.getTranslatedName(1) + " with null input to enchanter.");
+			return;
+		}
 		EnderTweaker.ADDITIONS.add(() -> {
 			Things thing = new Things();
 			thing.add(new NNList<>(CraftTweakerMC.getIngredient(input).getMatchingStacks()));
