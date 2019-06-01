@@ -1,5 +1,6 @@
 package shadows.endertweaker.recipe;
 
+import crafttweaker.CraftTweakerAPI;
 import crazypants.enderio.base.recipe.IRecipeInput;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -11,6 +12,10 @@ public class RecipeInput implements IRecipeInput {
 
 	public RecipeInput(Ingredient ing) {
 		this.ing = ing;
+		if (ing.getMatchingStacks().length == 0) {
+			CraftTweakerAPI.logInfo("EnderTweaker receieved an empty ingredient.  This may cause problems.");
+			CraftTweakerAPI.logInfo(ing.toString());
+		}
 	}
 
 	@Override
@@ -25,7 +30,7 @@ public class RecipeInput implements IRecipeInput {
 
 	@Override
 	public ItemStack getInput() {
-		return ing.getMatchingStacks()[0].copy();
+		return ing.getMatchingStacks().length == 0 ? ItemStack.EMPTY : ing.getMatchingStacks()[0].copy();
 	}
 
 	@Override
