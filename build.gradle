@@ -53,7 +53,7 @@ dependencies {
 	deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
 	deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.+"
 	deobfCompile "info.loenwind.autoconfig:AutoConfig:+"
-	deobfCompile "info.loenwind.autosave:AutoSave:+"
+	deobfCompile "info.loenwind.autosave:AutoSave:1.12.2-+"
 }
 
 processResources
