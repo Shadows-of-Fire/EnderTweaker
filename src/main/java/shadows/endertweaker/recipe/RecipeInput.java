@@ -76,4 +76,9 @@ public class RecipeInput implements IRecipeInput {
 	public void shrinkStack(int count) {
 	}
 
+	@Override
+	public int getStackSize() {
+		return ing.getMatchingStacks().length == 0 ? 0 : ing.getMatchingStacks()[0].getCount();
+	}
+
 }
