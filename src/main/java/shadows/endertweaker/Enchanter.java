@@ -49,6 +49,7 @@ public class Enchanter {
 			return;
 		}
 		EnderTweaker.REMOVALS.add(() -> {
+// May this be the Crash Causing Part ? enchantment instead of just ench ? Idk I'm noob :D -Speecker
 			Enchantment ench = (Enchantment) output.getInternal();
 			String id = null;
 			for (Map.Entry<String, IMachineRecipe> ent : MachineRecipeRegistry.instance.getRecipesForMachine(MachineRecipeRegistry.ENCHANTER).entrySet()) {
