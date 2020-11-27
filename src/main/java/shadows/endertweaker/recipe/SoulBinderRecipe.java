@@ -1,5 +1,7 @@
 package shadows.endertweaker.recipe;
 
+import crazypants.enderio.base.recipe.Recipe;
+import crazypants.enderio.base.recipe.RecipeLevel;
 import crazypants.enderio.base.recipe.soul.AbstractSoulBinderRecipe;
 import crazypants.enderio.util.CapturedMob;
 import net.minecraft.item.ItemStack;
@@ -13,8 +15,8 @@ public class SoulBinderRecipe extends AbstractSoulBinderRecipe {
 	protected final Ingredient input;
 	protected final ItemStack output;
 
-	public SoulBinderRecipe(Ingredient input, ItemStack output, int energy, int xp, ResourceLocation[] entities) {
-		super(energy, xp, String.format("et_%s_%s", output.getDisplayName(), k++), entities);
+	public SoulBinderRecipe(Ingredient input, ItemStack output, int energy, int xp, RecipeLevel level, ResourceLocation... entities) {
+		super(energy, xp, String.format("et_%s_%s", output.getDisplayName(), k++), level, entities);
 		this.input = input;
 		this.output = output;
 	}

@@ -5,12 +5,7 @@ import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.liquid.ILiquidStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
-import crazypants.enderio.base.recipe.IRecipe;
-import crazypants.enderio.base.recipe.IRecipeInput;
-import crazypants.enderio.base.recipe.Recipe;
-import crazypants.enderio.base.recipe.RecipeBonusType;
-import crazypants.enderio.base.recipe.RecipeInput;
-import crazypants.enderio.base.recipe.RecipeOutput;
+import crazypants.enderio.base.recipe.*;
 import crazypants.enderio.base.recipe.vat.VatRecipeManager;
 import shadows.endertweaker.recipe.VatRecipeInput;
 import stanhebben.zenscript.annotations.Optional;
@@ -26,7 +21,7 @@ public class Vat {
 		if (hasErrors(output, input, slot1Solids, slot1Mults, slot2Solids, slot2Mults)) return;
 		EnderTweaker.ADDITIONS.add(() -> {
 			RecipeOutput out = new RecipeOutput(CraftTweakerMC.getLiquidStack(output));
-			Recipe rec = new Recipe(out, energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.NONE, getVatInputs(input, inMult <= 0 ? 1 : inMult, slot1Solids, slot1Mults, slot2Solids, slot2Mults));
+			Recipe rec = new Recipe(out, energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.NONE, RecipeLevel.IGNORE, getVatInputs(input, inMult <= 0 ? 1 : inMult, slot1Solids, slot1Mults, slot2Solids, slot2Mults));
 			VatRecipeManager.getInstance().addRecipe(rec);
 		});
 	}
