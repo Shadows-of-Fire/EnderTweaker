@@ -34,7 +34,7 @@ public class SagMill {
 		final float[] xpa = xp;
 		if (hasErrors(output, chances, input, xpa, bonusType)) return;
 		EnderTweaker.ADDITIONS.add(() -> {
-			SagRecipe recipe = new SagRecipe(new RecipeInput(CraftTweakerMC.getIngredient(input)), energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.valueOf(Strings.isNullOrEmpty(bonusType) ? "NONE" : bonusType), RecipeUtils.toEIOOutputs(output, chances, xpa));
+			SagRecipe recipe = new SagRecipe(new RecipeInput(CraftTweakerMC.getIngredient(input)), energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.valueOf(Strings.isNullOrEmpty(bonusType) ? "NONE" : bonusType), RecipeLevel.IGNORE, RecipeUtils.toEIOOutputs(output, chances, xpa));
 			SagMillRecipeManager.getInstance().addRecipe(recipe);
 		});
 	}
@@ -48,7 +48,7 @@ public class SagMill {
 		final float[] xpa = xp;
 		if (hasErrors(output, input, xpa, bonusType)) return;
 		EnderTweaker.ADDITIONS.add(() -> {
-			SagRecipe recipe = new SagRecipe(new RecipeInput(CraftTweakerMC.getIngredient(input)), energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.valueOf(Strings.isNullOrEmpty(bonusType) ? "NONE" : bonusType), RecipeUtils.toEIOOutputs(output, xpa));
+			SagRecipe recipe = new SagRecipe(new RecipeInput(CraftTweakerMC.getIngredient(input)), energyCost <= 0 ? 5000 : energyCost, RecipeBonusType.valueOf(Strings.isNullOrEmpty(bonusType) ? "NONE" : bonusType), RecipeLevel.IGNORE, RecipeUtils.toEIOOutputs(output, xpa));
 			SagMillRecipeManager.getInstance().addRecipe(recipe);
 		});
 	}

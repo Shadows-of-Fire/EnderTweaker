@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 
-version = "1.12.2-1.2.0"
+version = "1.12.2-1.2.1"
 group= "shadows.endertweaker"
 archivesBaseName = "EnderTweaker"
 
@@ -22,7 +22,7 @@ compileJava {
 minecraft {
     version = "1.12.2-14.23.5.2847"
     runDir = "run"
-    mappings = "stable_39"
+    mappings = "snapshot_20171003"
 	makeObfSourceJar = false
 }
 
@@ -31,7 +31,7 @@ repositories {
         url "http://dvs1.progwml6.com/files/maven"
     }
 	maven {
-		url "http://tehnut.info/maven"
+		url "http://maven.tehnut.info"
 	}
 	maven {
 		url "http://maven.tterrag.com"

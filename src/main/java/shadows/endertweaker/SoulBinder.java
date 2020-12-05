@@ -9,6 +9,7 @@ import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crazypants.enderio.base.recipe.IMachineRecipe;
 import crazypants.enderio.base.recipe.MachineRecipeRegistry;
+import crazypants.enderio.base.recipe.RecipeLevel;
 import crazypants.enderio.base.recipe.soul.ISoulBinderRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -25,7 +26,7 @@ public class SoulBinder {
 	@ZenMethod
 	public static void addRecipe(IItemStack output, IIngredient input, String[] entities, int xp, @Optional int energyCost) {
 		EnderTweaker.ADDITIONS.add(() -> {
-			MachineRecipeRegistry.instance.registerRecipe(MachineRecipeRegistry.SOULBINDER, new SoulBinderRecipe(CraftTweakerMC.getIngredient(input), CraftTweakerMC.getItemStack(output), xp, energyCost <= 0 ? 5000 : energyCost, toRelocs(entities)));
+			MachineRecipeRegistry.instance.registerRecipe(MachineRecipeRegistry.SOULBINDER, new SoulBinderRecipe(CraftTweakerMC.getIngredient(input), CraftTweakerMC.getItemStack(output), xp, energyCost <= 0 ? 5000 : energyCost, RecipeLevel.IGNORE, toRelocs(entities)));
 		});
 	}
 

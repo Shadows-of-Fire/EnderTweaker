@@ -2,16 +2,12 @@ package shadows.endertweaker.recipe;
 
 import com.enderio.core.common.util.NNList;
 
-import crazypants.enderio.base.recipe.IRecipeInput;
-import crazypants.enderio.base.recipe.MachineRecipeInput;
-import crazypants.enderio.base.recipe.Recipe;
-import crazypants.enderio.base.recipe.RecipeBonusType;
-import crazypants.enderio.base.recipe.RecipeOutput;
+import crazypants.enderio.base.recipe.*;
 
 public class ManyToOneRecipe extends Recipe {
 
-	public ManyToOneRecipe(RecipeOutput output, int energyRequired, RecipeBonusType bonusType, IRecipeInput... input) {
-		super(output, energyRequired, bonusType, input);
+	public ManyToOneRecipe(RecipeOutput output, int energyRequired, RecipeBonusType bonusType, RecipeLevel level, IRecipeInput... input) {
+		super(output, energyRequired, bonusType, level, input);
 	}
 
 	@Override

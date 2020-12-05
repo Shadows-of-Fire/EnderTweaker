@@ -2,16 +2,12 @@ package shadows.endertweaker.recipe;
 
 import com.enderio.core.common.util.NNList;
 
-import crazypants.enderio.base.recipe.IRecipeInput;
-import crazypants.enderio.base.recipe.MachineRecipeInput;
-import crazypants.enderio.base.recipe.Recipe;
-import crazypants.enderio.base.recipe.RecipeBonusType;
-import crazypants.enderio.base.recipe.RecipeOutput;
+import crazypants.enderio.base.recipe.*;
 
 public class SagRecipe extends Recipe {
 
-	public SagRecipe(IRecipeInput input, int energyRequired, RecipeBonusType bonusType, RecipeOutput... output) {
-		super(input, energyRequired, bonusType, output);
+	public SagRecipe(IRecipeInput input, int energyRequired, RecipeBonusType bonusType, RecipeLevel level, RecipeOutput... output) {
+		super(input, energyRequired, bonusType, level, output);
 	}
 
 	@Override

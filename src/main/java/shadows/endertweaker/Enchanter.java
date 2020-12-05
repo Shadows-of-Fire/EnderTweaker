@@ -12,6 +12,7 @@ import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crazypants.enderio.base.recipe.IMachineRecipe;
 import crazypants.enderio.base.recipe.MachineRecipeRegistry;
+import crazypants.enderio.base.recipe.RecipeLevel;
 import crazypants.enderio.base.recipe.enchanter.EnchanterRecipe;
 import net.minecraft.enchantment.Enchantment;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -36,7 +37,7 @@ public class Enchanter {
 			thing.add(new NNList<>(CraftTweakerMC.getIngredient(input).getMatchingStacks()));
 			Enchantment enchantment = (Enchantment) output.getInternal();
 			if (!thing.isEmpty() && enchantment != null) {
-				EnchanterRecipe recipe = new EnchanterRecipe(thing, amountPerLevel, enchantment, costMultiplier);
+				EnchanterRecipe recipe = new EnchanterRecipe(RecipeLevel.IGNORE, thing, amountPerLevel, enchantment, costMultiplier);
 				MachineRecipeRegistry.instance.registerRecipe(MachineRecipeRegistry.ENCHANTER, recipe);
 			}
 		});
