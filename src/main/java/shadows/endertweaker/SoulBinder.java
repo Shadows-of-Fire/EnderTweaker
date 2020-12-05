@@ -26,7 +26,7 @@ public class SoulBinder {
 	@ZenMethod
 	public static void addRecipe(IItemStack output, IIngredient input, String[] entities, int xp, @Optional int energyCost) {
 		EnderTweaker.ADDITIONS.add(() -> {
-			MachineRecipeRegistry.instance.registerRecipe(MachineRecipeRegistry.SOULBINDER, new SoulBinderRecipe(CraftTweakerMC.getIngredient(input), CraftTweakerMC.getItemStack(output), xp, energyCost <= 0 ? 5000 : energyCost, RecipeLevel.IGNORE, toRelocs(entities)));
+			MachineRecipeRegistry.instance.registerRecipe(new SoulBinderRecipe(CraftTweakerMC.getIngredient(input), CraftTweakerMC.getItemStack(output), xp, energyCost <= 0 ? 5000 : energyCost, RecipeLevel.IGNORE, toRelocs(entities)));
 		});
 	}
 

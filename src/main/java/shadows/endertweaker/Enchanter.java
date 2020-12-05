@@ -38,7 +38,7 @@ public class Enchanter {
 			Enchantment enchantment = (Enchantment) output.getInternal();
 			if (!thing.isEmpty() && enchantment != null) {
 				EnchanterRecipe recipe = new EnchanterRecipe(RecipeLevel.IGNORE, thing, amountPerLevel, enchantment, costMultiplier);
-				MachineRecipeRegistry.instance.registerRecipe(MachineRecipeRegistry.ENCHANTER, recipe);
+				MachineRecipeRegistry.instance.registerRecipe(recipe);
 			}
 		});
 	}

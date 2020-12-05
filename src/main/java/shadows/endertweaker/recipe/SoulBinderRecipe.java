@@ -1,6 +1,5 @@
 package shadows.endertweaker.recipe;
 
-import crazypants.enderio.base.recipe.Recipe;
 import crazypants.enderio.base.recipe.RecipeLevel;
 import crazypants.enderio.base.recipe.soul.AbstractSoulBinderRecipe;
 import crazypants.enderio.util.CapturedMob;
