@@ -25,9 +25,9 @@ public class SoulBinder {
 
 	@ZenMethod
 	public static void addRecipe(IItemStack output, IIngredient input, String[] entities, int xp, @Optional int energyCost) {
-		EnderTweaker.ADDITIONS.add(() -> {
-			MachineRecipeRegistry.instance.registerRecipe(new SoulBinderRecipe(CraftTweakerMC.getIngredient(input), CraftTweakerMC.getItemStack(output), xp, energyCost <= 0 ? 5000 : energyCost, RecipeLevel.IGNORE, toRelocs(entities)));
-		});
+		EnderTweaker.ADDITIONS.add(() -> MachineRecipeRegistry.instance.registerRecipe(
+				new SoulBinderRecipe(CraftTweakerMC.getIngredient(input), CraftTweakerMC.getItemStack(output), xp,
+						energyCost <= 0 ? 5000 : energyCost, RecipeLevel.IGNORE, toRelocs(entities))));
 	}
 
 	@ZenMethod
@@ -39,7 +39,7 @@ public class SoulBinder {
 		EnderTweaker.REMOVALS.add(() -> {
 			ItemStack stack = CraftTweakerMC.getItemStack(output);
 			String id = null;
-			for (Map.Entry<String, IMachineRecipe> ent : MachineRecipeRegistry.instance.getRecipesForMachine(MachineRecipeRegistry.SOULBINDER).entrySet()) {
+			for (Map.Entry<String, ? extends IMachineRecipe> ent : MachineRecipeRegistry.instance.getRecipesForMachine(MachineRecipeRegistry.SOULBINDER).entrySet()) {
 				if (OreDictionary.itemMatches(stack, ((ISoulBinderRecipe) ent.getValue()).getOutputStack(), false)) {
 					id = ent.getKey();
 					break;
