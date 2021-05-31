@@ -45,7 +45,8 @@ public class Tank {
 		EnderTweaker.REMOVALS.add(() -> {
 			String rec = null;
 			String id = fill ? MachineRecipeRegistry.TANK_FILLING : MachineRecipeRegistry.TANK_EMPTYING;
-			for (Map.Entry<String, IMachineRecipe> ent : MachineRecipeRegistry.instance.getRecipesForMachine(id).entrySet()) {
+			for (Map.Entry<String, ? extends IMachineRecipe> ent :
+			MachineRecipeRegistry.instance.getRecipesForMachine(id).entrySet()) {
 				TankMachineRecipe r = (TankMachineRecipe) ent.getValue();
 				if (r.getFluid().getFluid().getName().equals(fluid.getName()) && OreDictionary.itemMatches(CraftTweakerMC.getItemStack(output), r.getOutput().getMatchingStacks()[0], false)) {
 					rec = ent.getKey();

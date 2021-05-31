@@ -52,7 +52,8 @@ public class Enchanter {
 		EnderTweaker.REMOVALS.add(() -> {
 			Enchantment ench = (Enchantment) output.getInternal();
 			String id = null;
-			for (Map.Entry<String, IMachineRecipe> ent : MachineRecipeRegistry.instance.getRecipesForMachine(MachineRecipeRegistry.ENCHANTER).entrySet()) {
+			for (Map.Entry<String, ? extends IMachineRecipe> ent :
+			MachineRecipeRegistry.instance.getRecipesForMachine(MachineRecipeRegistry.ENCHANTER).entrySet()) {
 				if (((EnchanterRecipe) ent.getValue()).getEnchantment() == ench) {
 					id = ent.getKey();
 					break;

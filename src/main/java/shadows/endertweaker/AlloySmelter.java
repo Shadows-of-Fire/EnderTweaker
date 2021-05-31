@@ -1,28 +1,23 @@
 package shadows.endertweaker;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.enderio.core.common.util.NNList;
-
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crazypants.enderio.base.recipe.IManyToOneRecipe;
-import crazypants.enderio.base.recipe.IRecipe;
 import crazypants.enderio.base.recipe.MachineRecipeInput;
-import crazypants.enderio.base.recipe.RecipeBonusType;
 import crazypants.enderio.base.recipe.RecipeLevel;
-import crazypants.enderio.base.recipe.RecipeOutput;
 import crazypants.enderio.base.recipe.alloysmelter.AlloyRecipeManager;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import shadows.endertweaker.recipe.ManyToOneRecipe;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @ZenClass("mods.enderio.AlloySmelter")
 @ZenRegister
@@ -31,11 +26,8 @@ public class AlloySmelter {
 	@ZenMethod
 	public static void addRecipe(IItemStack output, IIngredient[] input, @Optional int energyCost, @Optional float xp) {
 		if (hasErrors(output, input)) return;
-		EnderTweaker.ADDITIONS.add(() -> {
-			RecipeOutput out = new RecipeOutput(CraftTweakerMC.getItemStack(output), 1, xp);
-			ManyToOneRecipe rec = new ManyToOneRecipe(out, energyCost, RecipeBonusType.NONE, RecipeLevel.IGNORE, RecipeUtils.toEIOInputs(input));
-			AlloyRecipeManager.getInstance().addRecipe(rec);
-		});
+		EnderTweaker.ADDITIONS.add(() -> AlloyRecipeManager.getInstance().addRecipe(false, new NNList<>(RecipeUtils.toEIOInputs(input)),
+				CraftTweakerMC.getItemStack(output), energyCost, xp, RecipeLevel.IGNORE));
 	}
 
 	@ZenMethod
@@ -69,7 +61,7 @@ public class AlloySmelter {
 			for (int i = 0; i < input.length; i++) {
 				inputs.add(new MachineRecipeInput(i, CraftTweakerMC.getItemStack(input[i])));
 			}
-			IRecipe r = AlloyRecipeManager.getInstance().getRecipeForInputs(RecipeLevel.IGNORE, inputs);
+			IManyToOneRecipe r = (IManyToOneRecipe)AlloyRecipeManager.getInstance().getRecipeForInputs(RecipeLevel.IGNORE, inputs);
 
 			if (r != null) {
 				AlloyRecipeManager.getInstance().getRecipes().remove(r);
