@@ -7,6 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nonnull;
+
 public class SoulBinderRecipe extends AbstractSoulBinderRecipe {
 
 	private static int k = 0;
@@ -20,23 +22,26 @@ public class SoulBinderRecipe extends AbstractSoulBinderRecipe {
 		this.output = output;
 	}
 
+	@Nonnull
 	@Override
 	public ItemStack getInputStack() {
 		return input.getMatchingStacks()[0].copy();
 	}
 
+	@Nonnull
 	@Override
 	public ItemStack getOutputStack() {
 		return output.copy();
 	}
 
+	@Nonnull
 	@Override
-	public ItemStack getOutputStack(ItemStack input, CapturedMob mobType) {
+	public ItemStack getOutputStack(@Nonnull ItemStack input, @Nonnull CapturedMob mobType) {
 		return getOutputStack();
 	}
 
 	@Override
-	protected boolean isValidInputItem(ItemStack item) {
+	protected boolean isValidInputItem(@Nonnull ItemStack item) {
 		return input.apply(item);
 	}
 
