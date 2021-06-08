@@ -26,8 +26,8 @@ public class AlloySmelter {
 	@ZenMethod
 	public static void addRecipe(IItemStack output, IIngredient[] input, @Optional int energyCost, @Optional float xp) {
 		if (hasErrors(output, input)) return;
-		EnderTweaker.ADDITIONS.add(() -> AlloyRecipeManager.getInstance().addRecipe(false, new NNList<>(RecipeUtils.toEIOInputs(input)),
-				CraftTweakerMC.getItemStack(output), energyCost, xp, RecipeLevel.IGNORE));
+		EnderTweaker.ADDITIONS.add(() -> AlloyRecipeManager.getInstance().addRecipe(true, RecipeUtils.toEIOInputsNN(input),
+				CraftTweakerMC.getItemStack(output), energyCost <= 0 ? 5000 : energyCost, xp, RecipeLevel.IGNORE));
 	}
 
 	@ZenMethod
@@ -75,7 +75,7 @@ public class AlloySmelter {
 			return true;
 		}
 		if (input.length > 3) {
-			CraftTweakerAPI.logError("Invalid Alloy Smelter input, must be between 1 and 3 inputs.  Provided: " + RecipeUtils.getDisplayString(input));
+			CraftTweakerAPI.logError("Invalid Alloy Smelter input, must be between 1 and 3 inputs. Provided: " + RecipeUtils.getDisplayString(input));
 			return true;
 		}
 		return false;

@@ -1,5 +1,6 @@
 package shadows.endertweaker;
 
+import com.enderio.core.common.util.NNList;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.item.WeightedItemStack;
@@ -13,6 +14,14 @@ public class RecipeUtils {
 		IRecipeInput[] ret = new IRecipeInput[inputs.length];
 		for (int i = 0; i < ret.length; i++) {
 			ret[i] = toInput(inputs[i]);
+		}
+		return ret;
+	}
+
+	public static NNList<IRecipeInput> toEIOInputsNN(IIngredient[] inputs) {
+		NNList<IRecipeInput> ret = new NNList<>();
+		for (IIngredient input : inputs) {
+			ret.add(toInput(input));
 		}
 		return ret;
 	}
