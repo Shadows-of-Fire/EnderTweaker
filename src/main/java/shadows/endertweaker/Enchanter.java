@@ -52,15 +52,17 @@ public class Enchanter {
 		EnderTweaker.REMOVALS.add(() -> {
 			Enchantment ench = (Enchantment) output.getInternal();
 			String id = null;
+			IMachineRecipe recipe = null;
 			for (Map.Entry<String, ? extends IMachineRecipe> ent :
 			MachineRecipeRegistry.instance.getRecipesForMachine(MachineRecipeRegistry.ENCHANTER).entrySet()) {
 				if (((EnchanterRecipe) ent.getValue()).getEnchantment() == ench) {
 					id = ent.getKey();
+					recipe = ent.getValue();
 					break;
 				}
 			}
 			if (id != null) {
-				MachineRecipeRegistry.instance.getRecipesForMachine(MachineRecipeRegistry.ENCHANTER).remove(id);
+				MachineRecipeRegistry.instance.removeRecipe(recipe);
 			} else CraftTweakerAPI.logError("No Enchanter recipe found for " + output.getName());
 		});
 	}

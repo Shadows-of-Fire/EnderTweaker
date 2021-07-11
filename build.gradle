@@ -31,9 +31,6 @@ repositories {
         url "http://dvs1.progwml6.com/files/maven"
     }
 	maven {
-		url "http://maven.tehnut.info"
-	}
-	maven {
 		url "http://maven.tterrag.com"
 	}
 	maven {
@@ -43,8 +40,8 @@ repositories {
 
 dependencies {
 	deobfCompile "mezz.jei:jei_1.12.2:+"
-	deobfCompile "mcp.mobius.waila:Hwyla:1.8.+"
-	deobfCompile("com.enderio:EnderIO:1.12.2-5.3.68"){
+    deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.28-17"
+	deobfCompile("com.enderio:EnderIO:1.12.2-5.3.70"){
         transitive = false
     }
 	deobfCompile "com.enderio.core:EnderCore:1.12.2-+"
