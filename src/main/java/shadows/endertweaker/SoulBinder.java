@@ -39,14 +39,16 @@ public class SoulBinder {
 		EnderTweaker.REMOVALS.add(() -> {
 			ItemStack stack = CraftTweakerMC.getItemStack(output);
 			String id = null;
+			IMachineRecipe recipe = null;
 			for (Map.Entry<String, ? extends IMachineRecipe> ent : MachineRecipeRegistry.instance.getRecipesForMachine(MachineRecipeRegistry.SOULBINDER).entrySet()) {
 				if (OreDictionary.itemMatches(stack, ((ISoulBinderRecipe) ent.getValue()).getOutputStack(), false)) {
 					id = ent.getKey();
+					recipe = ent.getValue();
 					break;
 				}
 			}
 			if (id != null) {
-				MachineRecipeRegistry.instance.getRecipesForMachine(MachineRecipeRegistry.SOULBINDER).remove(id);
+				MachineRecipeRegistry.instance.removeRecipe(recipe);
 			} else CraftTweakerAPI.logError("No Soul Binder recipe found for " + output.getDisplayName());
 		});
 	}
