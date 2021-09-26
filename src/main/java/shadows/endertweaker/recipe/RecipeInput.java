@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
 
+import javax.annotation.Nonnull;
+
 public class RecipeInput implements IRecipeInput {
 
 	protected final Ingredient ing;
@@ -13,11 +15,12 @@ public class RecipeInput implements IRecipeInput {
 	public RecipeInput(Ingredient ing) {
 		this.ing = ing;
 		if (ing.getMatchingStacks().length == 0) {
-			CraftTweakerAPI.logInfo("EnderTweaker receieved an empty ingredient.  This may cause problems.");
+			CraftTweakerAPI.logInfo("EnderTweaker received an empty ingredient. This may cause problems.");
 			CraftTweakerAPI.logInfo(ing.toString());
 		}
 	}
 
+	@Nonnull
 	@Override
 	public IRecipeInput copy() {
 		return new RecipeInput(ing);
@@ -28,6 +31,7 @@ public class RecipeInput implements IRecipeInput {
 		return false;
 	}
 
+	@Nonnull
 	@Override
 	public ItemStack getInput() {
 		return ing.getMatchingStacks().length == 0 ? ItemStack.EMPTY : ing.getMatchingStacks()[0].copy();
@@ -49,7 +53,7 @@ public class RecipeInput implements IRecipeInput {
 	}
 
 	@Override
-	public boolean isInput(ItemStack test) {
+	public boolean isInput(@Nonnull ItemStack test) {
 		return ing.apply(test);
 	}
 
